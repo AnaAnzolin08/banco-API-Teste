@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "mocha ./test/**/*.test.js --timeout=2000"
+    "test": "mocha ./test/**/*.test.js --timeout=2000 --reporter mochawesome"
   },
   "author": "",
   "license": "ISC",
