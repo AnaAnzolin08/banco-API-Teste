@@ -1,66 +1,40 @@
 const request = require('supertest');
 const { expect } = require('chai');
-require('dotenv').config()
+require('dotenv').config();
+const { obterToken } = require('../helpers/autenticacao')
 
 describe('Transferências', () => {
-    describe('POST/ transferencias', ( )=> { 
-        it('Deve retorna sucesso com 201 quando o valor da transferencia for igual ou acima de 10,00', async () => {
-            // Capturar o token
-        const respostaLogin = await request(process.env.BASE_URL)
-            .post('/login')
-            .set('Content-Type', 'application/json')
-            .send({
-            
-                'username': 'julio.lima',
-                'senha': '123456'
-            }) 
+  describe('POST /transferencias', () => {
+    it('Deve retornar sucesso com 201 quando o valor da transferência for igual ou acima de 10,00', async () => {
+      const token = await obterToken('Julio.lima', '123456');
 
-            const token = respostaLogin.body.token
+      const resposta = await request(process.env.BASE_URL)
+        .post('/transferencias')
+        .set('Content-Type', 'application/json') // Removido espaço extra!
+        .set('Authorization', `Bearer ${token}`)
+        .send({
+          contaOrigem: 1,
+          contaDestino: 2,
+          valor: 11
+        });
 
-            const resposta = await request(process.env.BASE_URL)
-            .post( '/transferencias')
-            .set('Content-Type', 'application/json ')
-            .set('Authorization', `Bearer ${token}`)
-            .send({
-                    contaOrigem: 1,
-                    contaDestino: 2,
-                    valor: 11,
-                    token: "",
-            })
-                
-              
-                expect(resposta.status).to.equal(201);
-                
-            })
+      expect(resposta.status).to.equal(201);
+    });
 
-        
-         it('Deve retorna falha 402 , quando o valor da transferencia for acima de 10,00 ',async () => {
-            const respostaLogin = await request('http://localhost:3000')
-            .post('/login')
-            .set('Content-Type', 'application/json')
-            .send({
-            
-                'username': 'julio.lima',
-                'senha': '123456'
-            }) 
+    it('Deve retornar falha 422 quando o valor da transferência for abaixo de 10,00', async () => {
+      const token = await obterToken('Julio.lima', '123456');
 
-            const token = respostaLogin.body.token
+      const resposta = await request(process.env.BASE_URL)
+        .post('/transferencias')
+        .set('Content-Type', 'application/json')
+        .set('Authorization', `Bearer ${token}`)
+        .send({
+          contaOrigem: 1,
+          contaDestino: 2,
+          valor: 8
+        });
 
-            const resposta = await request('http://localhost:3000')
-            .post( '/transferencias')
-            .set('Content-Type', 'application/json ')
-            .set('Authorization', `Bearer ${token}`)
-            .send({
-                    contaOrigem: 1,
-                    contaDestino: 2,
-                    valor: 8,
-                    token: "",
-            })
-                
-              
-                expect(resposta.status).to.equal(422);
-                
-            })
-
-        })
-    })
+      expect(resposta.status).to.equal(422); // Corrigido: 422 é unprocessable entity
+    });
+  });
+});
