@@ -93,6 +93,3 @@ mochawesome-report/mochawesome.html
 
 ---
 
-## 🙏 Contribuição
-
-Fique à vontade para abrir issues ou PRs com sugestões de melhoria para os testes.
