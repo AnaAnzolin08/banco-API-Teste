@@ -1,12 +1,13 @@
 ## Banco API - Testes Automatizados
 
-O  projeto contém uma suite de **testes automatizados para a API REST** do projeto [Banco API](https://github.com/AnaAnzolin08/banco-API-Teste).
+Esse projeto contém uma suite de **testes automatizados para a API REST** do projeto [Banco API](https://github.com/AnaAnzolin08/banco-API-Teste).
 Os testes são escritos em **JavaScript** e utilizam ferramentas populares como **Mocha**, **Chai** e **Supertest** para validar os endpoints da API.
 
 
 ## 📄 Objetivo
 
-Para garantir que todos os endpoints da API do Banco estejam funcionando corretamente, cobrindo casos de sucesso e falha, e validação seja  automatizada via linha de comando ou relatórios em HTML.
+Para garantir que todos os endpoints da API do Banco estejam funcionando corretamente,
+cobrindo casos de sucesso e falha, e validação seja  automatizada via linha de comando ou relatórios em HTML.
 
 ---
 
