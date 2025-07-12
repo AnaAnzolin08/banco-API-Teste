@@ -89,7 +89,6 @@ mochawesome-report/mochawesome.html
 ## 🚜 Repositórios Relacionados
 
 * Projeto da API a ser testada: [https://github.com/AnaAnzolin08/banco-API-Teste](https://github.com/AnaAnzolin08/banco-API-Teste)
-* Projeto de testes: [https://github.com/juliodelimas/banco-api-tests](https://github.com/juliodelimas/banco-api-tests)
 
 ---
 
